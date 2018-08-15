@@ -1,0 +1,212 @@
+/*
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+	<langs>
+		<tplvar name="DESCRIPTION_1" en="Universal MODBUS checker" ru=""/>
+		<tplvar name="RS485_DSCR" en="Select a RS485" ru="Выберите RS485"/>
+		<tplvar name="RGSTR_TYPE" en="Select the type of the register" ru="Выберите тип регистра"/>
+		<tplvar name="RGSTR_TYPE_1" en="read coil registers"/>
+		<tplvar name="RGSTR_TYPE_2" en="read holding registers"/>
+		<tplvar name="DBG_MODE" en="Enable debug mode" ru="Включить режим отладки"/>
+		<tplvar name="RGSTR_ADDR" en="Enter the address of the register" ru="Введите адрес регистра"/>
+		<tplvar name="FORM_DSCR" en="Enter sprintf syntax text" ru="Введите адрес регистра"/>
+	</langs>
+	<description>
+		<b>##DESCRIPTION_1##</b>
+	</description>
+	<name value="UnvrsMB"/>
+	<tag value="import-script"/>
+	<item type="div"/>
+		<item type="checkbox" name="DEBUG" required="0" comment="##DBG_MODE##"/>
+		<item type="devices-list" name="RS485" filter="com-port" required="0" comment="##RS485_DSCR##"/>
+	<item type="div"/>
+		<line>
+			<item type="number" name="RGSTR1" required="1" min="1" comment="##RGSTR_ADDR## 1"/>
+			<item type="list" name="RGSTRTP1" required="1">
+				<option key="0" value="##RGSTR_TYPE_1##"/>
+				<option key="1" value="##RGSTR_TYPE_2##"/>
+			</item>
+		</line>
+		<line>
+			<item type="number" name="RGSTR2" required="0" min="1" comment="##RGSTR_ADDR## 2"/>
+			<item type="list" name="RGSTRTP2" required="1">
+				<option key="0" value="##RGSTR_TYPE_1##"/>
+				<option key="1" value="##RGSTR_TYPE_2##"/>
+			</item>
+		</line>
+		<line>
+			<item type="number" name="RGSTR3" required="0" min="1" comment="##RGSTR_ADDR## 3"/>
+			<item type="list" name="RGSTRTP3" required="1">
+				<option key="0" value="##RGSTR_TYPE_1##"/>
+				<option key="1" value="##RGSTR_TYPE_2##"/>
+			</item>
+		</line>
+		<line>
+			<item type="number" name="RGSTR4" required="0" min="1" comment="##RGSTR_ADDR## 4"/>
+			<item type="list" name="RGSTRTP4" required="1">
+				<option key="0" value="##RGSTR_TYPE_1##"/>
+				<option key="1" value="##RGSTR_TYPE_2##"/>
+			</item>
+		</line>
+		<line>
+			<item type="number" name="RGSTR5" required="0" min="1" comment="##RGSTR_ADDR## 5"/>
+			<item type="list" name="RGSTRTP5" required="1">
+				<option key="0" value="##RGSTR_TYPE_1##"/>
+				<option key="1" value="##RGSTR_TYPE_2##"/>
+			</item>
+		</line>
+	<item type="div"/>
+		<item type="string" name="STRING" required="0" comment="##RGSTR_ADDR## 10"/>
+	<item type="div"/>
+	<additems>
+		<additem tag="item" id="%TARGET%" name="LoliText" sub-id="%SUBID%" type="virtual" sub-type="text" length="2" />
+	</additems>
+	<item name="TEXT" type="hidden" value="%TARGET%:%SUBID%"/>
+</xml>
+*/
+u8 next = 0;
+u8 Sequence = 0;
+u16 Coilsequence[]={#ifdef COILRGSTR2 ,RGSTR2 #endif#ifdef RGSTR3 ,RGSTR3 #endif#ifdef RGSTR4 ,RGSTR4 #endif#ifdef RGSTR5 ,RGSTR5 #endif};
+u16 Holdsequence[]={#ifdef RGSTR2 ,RGSTR2 #endif#ifdef RGSTR3 ,RGSTR3 #endif#ifdef RGSTR4 ,RGSTR4 #endif#ifdef RGSTR5 ,RGSTR5 #endif};
+u16 rgstr1Val;
+u16 rgstr2Val;
+u16 rgstr3Val;
+u16 rgstr4Val;
+u16 rgstr5Val;
+
+void onInit()
+{
+	Sequence = ifSquence(SequenceArr,sizeof(SequenceArr)/4);
+}
+void bubleSort(u16* _arr, u8 _size)
+{
+	u8 i = 0;
+	for(i; i < _size; ++i)
+	{
+		for(u8 j = i; j < _size; ++j)
+		{
+			if(_arr[i] > _arr[j])
+			{
+				u16 buf = _arr[i];
+				_arr[i] = _arr[j];
+				_arr[j] = buf;
+			}
+		}	
+	}
+}
+
+u8 ifSquence(u16* _arr, u8 _size)
+{
+	u8 i = 0;
+	bubleSort(_arr,_size);
+	u8 checker = 0;
+	for(i; i < _size && _size > 1;++i)
+	{
+		if(checker+1 == _arr[i])
+		{
+			checker=_arr[i];
+		}
+		else
+		{
+			return 0;
+		}
+	}
+	if(_size > 1)
+		return 1;
+	return 0;
+}
+
+V-ID/RS485
+{
+	u8 MSG[250];
+	if((opt(1)&0x80) == 0x80)
+	{
+		u8 ERROR = opt(2)&0x07;
+		if(ERROR == 0x01)
+			sprintf(MSG,"(ERROR!!! CODE = %2.X) ILLEGAL FUNCTION",ERROR);
+		else
+			if(ERROR == 0x02)
+				ssprintf(MSG,"(ERROR!!! CODE = %2.X) ILLEGAL DATA ADDRESS",ERROR);
+			else
+				if(ERROR == 0x03)
+					sprintf(MSG,"(ERROR!!! CODE = %2.X) ILLEGAL DATA VALUE",ERROR);
+			else
+				if(ERROR == 0x04)
+					sprintf(MSG,"(ERROR!!! CODE = %2.X) SLAVE DEVICE FAILURE",ERROR);
+				else
+				{
+					sprintf(MSG,"ERROR!!! CODE = %2.X",ERROR);
+				}
+		setStatus(TEXT,&MSG);
+	} else if(opt(1)==0x03)
+		{
+			if(Sequence)
+			{
+				for(u8 i = 4; i < (optl - 1); i+=2, ++next)
+				{
+					if(Sequence[next] == RGSTR1)
+					{
+						rgstr1Val = opt(i - 1)*256 + opt(i);
+					}
+					#ifdef RGSTR2
+						if(Sequence[next] == RGSTR2)
+						{
+							rgstr2Val = opt(i - 1)*256 + opt(i);
+						}
+					#endif
+					#ifdef RGSTR3
+						if(Sequence[next] == RGSTR3)
+						{
+							rgstr3Val = opt(i - 1)*256 + opt(i);
+						}
+					#endif
+						#ifdef RGSTR4
+						if(Sequence[next] == RGSTR4)
+						{
+							rgstr4Val = opt(i - 1)*256 + opt(i);
+						}
+					#endif
+						#ifdef RGSTR5
+						if(Sequence[next] == RGSTR5)
+						{
+							rgstr5Val = opt(i - 1)*256 + opt(i);
+						}
+					#endif
+					sprintf(MSG,"STRING",rgstr1Val,rgstr2Val,rgstr3Val,rgstr4Val,rgstr5Val);
+				}
+			}
+			else
+			{
+				if(Sequence[next] == RGSTR1)
+				{
+					rgstr1Val = opt(i - 1)*256 + opt(i);
+				}
+				#ifdef RGSTR2
+					if(Sequence[next] == RGSTR2)
+					{
+						rgstr2Val = opt(i - 1)*256 + opt(i);
+					}
+				#endif
+				#ifdef RGSTR3
+					if(Sequence[next] == RGSTR3)
+					{
+						rgstr3Val = opt(i - 1)*256 + opt(i);
+					}
+				#endif
+				#ifdef RGSTR4
+					if(Sequence[next] == RGSTR4)
+					{
+						rgstr4Val = opt(i - 1)*256 + opt(i);
+					}
+				#endif
+				#ifdef RGSTR5
+					if(Sequence[next] == RGSTR5)
+					{
+						rgstr5Val = opt(i - 1)*256 + opt(i);
+					}
+				#endif
+				sprintf(MSG,"STRING",rgstr1Val,rgstr2Val,rgstr3Val,rgstr4Val,rgstr5Val);	
+			}
+			setStatus(TEXT,&MSG);
+		}
+}

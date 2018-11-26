@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9E1187C8-FF80-449C-87D7-B94902253F8B}</ProjectGuid>
+    <RootNamespace>MoK</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Army.cpp" />
+    <ClCompile Include="Building.cpp" />
+    <ClCompile Include="GraphicEngine_Source.cpp" />
+    <ClCompile Include="MoK.cpp" />
+    <ClCompile Include="Soldier_class.cpp" />
+    <ClCompile Include="WinMain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="army.hpp" />
+    <ClInclude Include="Build.hpp" />
+    <ClInclude Include="Building.hpp" />
+    <ClInclude Include="ButtonHead.hpp" />
+    <ClInclude Include="GraphicEngine.hpp" />
+    <ClInclude Include="Hero.hpp" />
+    <ClInclude Include="MoK.hpp" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Soldier.hpp" />
+    <ClInclude Include="Soldier_class.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MoK.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Picture\buttons_skins\button_active.bmp" />
+    <Image Include="..\Picture\buttons_skins\button_inactive.bmp" />
+    <Image Include="..\Picture\CampBackgrDlg.bmp" />
+    <Image Include="..\Picture\camp_sprite_list\camp.bmp" />
+    <Image Include="..\Picture\camp_sprite_list\camp_2.bmp" />
+    <Image Include="..\Picture\camp_sprite_list\camp_3.bmp" />
+    <Image Include="..\Picture\camp_sprite_list\camp_4.bmp" />
+    <Image Include="..\Picture\camp_sprite_list\camp_5.bmp" />
+    <Image Include="..\Picture\camp_sprite_list\camp_6.bmp" />
+    <Image Include="..\Picture\castle_1_sprite_list\castle.bmp" />
+    <Image Include="..\Picture\castle_1_sprite_list\castle10.bmp" />
+    <Image Include="..\Picture\castle_1_sprite_list\castle11.bmp" />
+    <Image Include="..\Picture\castle_1_sprite_list\castle12.bmp" />
+    <Image Include="..\Picture\castle_1_sprite_list\castle13.bmp" />
+    <Image Include="..\Picture\castle_1_sprite_list\castle14.bmp" />
+    <Image Include="..\Picture\castle_1_sprite_list\castle15.bmp" />
+    <Image Include="..\Picture\castle_1_sprite_list\castle2.bmp" />
+    <Image Include="..\Picture\castle_1_sprite_list\castle3.bmp" />
+    <Image Include="..\Picture\castle_1_sprite_list\castle4.bmp" />
+    <Image Include="..\Picture\castle_1_sprite_list\castle5.bmp" />
+    <Image Include="..\Picture\castle_1_sprite_list\castle6.bmp" />
+    <Image Include="..\Picture\castle_1_sprite_list\castle7.bmp" />
+    <Image Include="..\Picture\castle_1_sprite_list\castle8.bmp" />
+    <Image Include="..\Picture\castle_1_sprite_list\castle9.bmp" />
+    <Image Include="..\Picture\castle_2_sprite_list\castle_2.bmp" />
+    <Image Include="..\Picture\castle_2_sprite_list\castle_2_10.bmp" />
+    <Image Include="..\Picture\castle_2_sprite_list\castle_2_11.bmp" />
+    <Image Include="..\Picture\castle_2_sprite_list\castle_2_12.bmp" />
+    <Image Include="..\Picture\castle_2_sprite_list\castle_2_13.bmp" />
+    <Image Include="..\Picture\castle_2_sprite_list\castle_2_14.bmp" />
+    <Image Include="..\Picture\castle_2_sprite_list\castle_2_15.bmp" />
+    <Image Include="..\Picture\castle_2_sprite_list\castle_2_2.bmp" />
+    <Image Include="..\Picture\castle_2_sprite_list\castle_2_3.bmp" />
+    <Image Include="..\Picture\castle_2_sprite_list\castle_2_4.bmp" />
+    <Image Include="..\Picture\castle_2_sprite_list\castle_2_5.bmp" />
+    <Image Include="..\Picture\castle_2_sprite_list\castle_2_6.bmp" />
+    <Image Include="..\Picture\castle_2_sprite_list\castle_2_7.bmp" />
+    <Image Include="..\Picture\castle_2_sprite_list\castle_2_8.bmp" />
+    <Image Include="..\Picture\castle_2_sprite_list\castle_2_9.bmp" />
+    <Image Include="..\Picture\castle_3_sprite_list\castle_3.bmp" />
+    <Image Include="..\Picture\castle_3_sprite_list\castle_3_10.bmp" />
+    <Image Include="..\Picture\castle_3_sprite_list\castle_3_11.bmp" />
+    <Image Include="..\Picture\castle_3_sprite_list\castle_3_12.bmp" />
+    <Image Include="..\Picture\castle_3_sprite_list\castle_3_13.bmp" />
+    <Image Include="..\Picture\castle_3_sprite_list\castle_3_14.bmp" />
+    <Image Include="..\Picture\castle_3_sprite_list\castle_3_15.bmp" />
+    <Image Include="..\Picture\castle_3_sprite_list\castle_3_16.bmp" />
+    <Image Include="..\Picture\castle_3_sprite_list\castle_3_17.bmp" />
+    <Image Include="..\Picture\castle_3_sprite_list\castle_3_18.bmp" />
+    <Image Include="..\Picture\castle_3_sprite_list\castle_3_19.bmp" />
+    <Image Include="..\Picture\castle_3_sprite_list\castle_3_2.bmp" />
+    <Image Include="..\Picture\castle_3_sprite_list\castle_3_20.bmp" />
+    <Image Include="..\Picture\castle_3_sprite_list\castle_3_3.bmp" />
+    <Image Include="..\Picture\castle_3_sprite_list\castle_3_4.bmp" />
+    <Image Include="..\Picture\castle_3_sprite_list\castle_3_5.bmp" />
+    <Image Include="..\Picture\castle_3_sprite_list\castle_3_6.bmp" />
+    <Image Include="..\Picture\castle_3_sprite_list\castle_3_7.bmp" />
+    <Image Include="..\Picture\castle_3_sprite_list\castle_3_8.bmp" />
+    <Image Include="..\Picture\castle_3_sprite_list\castle_3_9.bmp" />
+    <Image Include="..\Picture\castle_4_sprite_list\castle_4.bmp" />
+    <Image Include="..\Picture\castle_4_sprite_list\castle_4_2.bmp" />
+    <Image Include="..\Picture\castle_4_sprite_list\castle_4_3.bmp" />
+    <Image Include="..\Picture\castle_4_sprite_list\castle_4_4.bmp" />
+    <Image Include="..\Picture\castle_4_sprite_list\castle_4_5.bmp" />
+    <Image Include="..\Picture\castle_4_sprite_list\castle_4_6.bmp" />
+    <Image Include="..\Picture\castle_4_sprite_list\castle_4_7.bmp" />
+    <Image Include="..\Picture\CaveBackgrDlg.bmp" />
+    <Image Include="..\Picture\cave_sprite_list\cave.bmp" />
+    <Image Include="..\Picture\cave_sprite_list\cave10.bmp" />
+    <Image Include="..\Picture\cave_sprite_list\cave11.bmp" />
+    <Image Include="..\Picture\cave_sprite_list\cave2.bmp" />
+    <Image Include="..\Picture\cave_sprite_list\cave3.bmp" />
+    <Image Include="..\Picture\cave_sprite_list\cave4.bmp" />
+    <Image Include="..\Picture\cave_sprite_list\cave5.bmp" />
+    <Image Include="..\Picture\cave_sprite_list\cave6.bmp" />
+    <Image Include="..\Picture\cave_sprite_list\cave7.bmp" />
+    <Image Include="..\Picture\cave_sprite_list\cave8.bmp" />
+    <Image Include="..\Picture\cave_sprite_list\cave9.bmp" />
+    <Image Include="..\Picture\Grid.bmp" />
+    <Image Include="..\Picture\hero\Hero_info.bmp" />
+    <Image Include="..\Picture\map_back.bmp" />
+    <Image Include="..\Picture\soldiers\recruit.bmp" />
+    <Image Include="..\Picture\soldiers\recruit_side_2.bmp" />
+    <Image Include="..\Picture\TombBackgrDlg.bmp" />
+    <Image Include="..\Picture\tomb_sprite_list\tomb.bmp" />
+    <Image Include="..\Picture\tomb_sprite_list\tomb10.bmp" />
+    <Image Include="..\Picture\tomb_sprite_list\tomb11.bmp" />
+    <Image Include="..\Picture\tomb_sprite_list\tomb2.bmp" />
+    <Image Include="..\Picture\tomb_sprite_list\tomb3.bmp" />
+    <Image Include="..\Picture\tomb_sprite_list\tomb4.bmp" />
+    <Image Include="..\Picture\tomb_sprite_list\tomb5.bmp" />
+    <Image Include="..\Picture\tomb_sprite_list\tomb6.bmp" />
+    <Image Include="..\Picture\tomb_sprite_list\tomb7.bmp" />
+    <Image Include="..\Picture\tomb_sprite_list\tomb8.bmp" />
+    <Image Include="..\Picture\tomb_sprite_list\tomb9.bmp" />
+    <Image Include="..\Picture\VillageBackgrDlg.bmp" />
+    <Image Include="..\Picture\village_sprite_list\village.bmp" />
+    <Image Include="..\Picture\village_sprite_list\village_2.bmp" />
+    <Image Include="..\Picture\village_sprite_list\village_3.bmp" />
+    <Image Include="..\Picture\village_sprite_list\village_4.bmp" />
+    <Image Include="..\Picture\village_sprite_list\village_5.bmp" />
+    <Image Include="..\Picture\village_sprite_list\village_6.bmp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
